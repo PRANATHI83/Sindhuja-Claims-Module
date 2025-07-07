@@ -5,11 +5,11 @@ services:
     image: postgres:15
     container_name: claims-postgres
     ports:
-      - "5435:5432"
+      - "5204:5432"
     environment:
       POSTGRES_DB: claims_db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin1023
+      POSTGRES_PASSWORD: admin123
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -19,7 +19,7 @@ services:
       context: ./Backend
     container_name: claims-backend
     ports:
-      - "3003:3003"
+      - "3204:3204"
     depends_on:
       - postgres
 
@@ -28,7 +28,7 @@ services:
       context: ./Employee-claims
     container_name: employee-claims
     ports:
-      - "8005:80"
+      - "8008:80"
     depends_on:
       - backend
 
@@ -37,7 +37,7 @@ services:
       context: ./HR-claims
     container_name: hr-claims
     ports:
-      - "8006:80"
+      - "8009:80"
     depends_on:
 
       - backend
